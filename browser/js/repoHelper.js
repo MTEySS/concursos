@@ -135,7 +135,46 @@ repo.open = function(folder) {
   repo.current = repo.find(folder);
 };
 
-repo.filter = function(filter) {
+repo.normalizeString = function(text) {
+
+  return text
+    .trim()
+    .toLowerCase()
+    .replace(/\s+/g, ' ')
+    .replace(/á/g, 'a')
+    .replace(/é/g, 'e')
+    .replace(/í/g, 'i')
+    .replace(/ó/g, 'o')
+    .replace(/ú/g, 'u')
+    .replace(/ú/g, 'u')
+  ;
+};
+
+repo.filter = function(filter, pre, post) {
+
+  if (pre && !post) {
+    pre = '<span class="' + pre + '">';
+    post = '</span>';
+  }
+
+  var buildRegExp = function(filter) {
+    filter = repo.normalizeString(filter);
+    var tokens = filter
+      .split(/\s+/)           //
+      .map(function(token) {
+        return '(' + token + ')';
+      })
+    ;
+    var regExp = '(.*)' + tokens.join('(.*)') + '(.*)';
+    return new RegExp(regExp, 'ig');
+  };
+
+  var r = buildRegExp(filter);
+
+
+
+
+  }
 
 };
 

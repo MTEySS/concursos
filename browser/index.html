@@ -11,19 +11,15 @@
 
   <body>
 
-
     <script src='lib/lodash.3.6.0.min.js'></script>
     <script src='lib/zepto.1.1.6.min.js'></script>
-    <script src='js/mock.js'></script>
     <script src='js/repoHelper.js'></script>
 
     <script type="text/javascript">
       repo.fetch('MTEySS', 'concursos', 'gh-pages', function(){
         console.log(repo);
 
-        var f = repo.find('/material_estudio/comunes/empleo_publico/res_45_2010-carteleras_ofertas_empleo_publico.doc')
-        var f2 = repo.find('material_estudio/comunes/convenio_colectivo_trabajo/')
-        var f3 = repo.find('material_estudio/comunes2')
+        repo.open('/material_estudio/comunes/empleo_publico/res_45_2010-carteleras_ofertas_empleo_publico.doc');
       });
     </script>
   </body>
