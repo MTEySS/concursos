@@ -1,0 +1,69 @@
+<div ui-content-for="title">
+  <span>Accordion</span>
+</div>
+
+<div class="scrollable">
+  <div class="scrollable-content">
+
+    <div class="list-group text-center">
+      <div class="list-group-item list-group-item-home">
+        <h1>Material de estudio para Concursos <small>2015</small>
+        </h1>
+        Desde la <a href='http://www.ate-ministeriodetrabajo.blogspot.com.ar/' target='_blank'>Junta Interna de ATE</a> del Ministerio de Trabajo ponemos a disposición de nuestros companer@s esta herramienta para ayudarlos a prepararse para los Concursos 2015. Hacé click <a href='#/contenidos'>aquí</a> para consultar el material de estudio.
+      </div>
+
+      <div class="list-group-item list-group-item-home media">
+        <div>
+          <a href='#/preguntas'>
+            <i class="fa fa-question feature-icon text-primary"></i>
+          </a>
+        </div>
+        <div class="media-body">
+          <h3 class="media-heading">Preguntas frecuentes</h3>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="panel-group"
+
+          ui-state='myAccordion'
+          ui-default='1'>
+
+          <div class="panel panel-default" ng-repeat="i in [1,2,3]">
+            <div class="panel-heading" ui-set="{'myAccordion': i}">
+
+              <h4 class="panel-title">
+                  Collapsible Group Item #{{i}}
+              </h4>
+            </div>
+            <!--
+              use uiScopeContext to use scope vars in ui-if/ui-hide/ui-show/ui-class expression
+              ie.
+              <div ui-hide="sharedState1 == myVar1 && sharedState2 == myVar2"
+                ui-scope-context="myVar1, myVar2"
+              >
+              </div>
+
+              Be aware that scope vars will take precedence over sharedStates so,
+              in order to avoid name clashes you can use 'as' to refer to scope vars
+              with a different name in conditions:
+
+              <div ui-hide="x == myVar1 && y == myVar2"
+                ui-scope-context="x as myVar1, y as myVar2"
+              >
+              </div>
+            -->
+            <div ui-if="myAccordion == i" ui-scope-context='i'>
+              <div class="panel-body">
+                {{lorem}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+    </div>
+  </div>
+</div>
