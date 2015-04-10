@@ -56,6 +56,13 @@ app.controller('MainController', [ '$rootScope', '$scope', 'repoHelper', functio
   ];
 */
 
+
+  $scope.open = function(item) {
+    $scope.current = item;
+    $scope.parent = (item === $scope.root) ? null : item.parent;
+    $scope.items = item.children;
+  };
+
 // http://markdalgleish.com/2013/06/using-promises-in-angularjs-views/
   repoHelper.fetch().then(function(repo) {
     $scope.repo = repo;
@@ -63,11 +70,9 @@ app.controller('MainController', [ '$rootScope', '$scope', 'repoHelper', functio
     $scope.open($scope.root);
   });
 
-  $scope.open = function(item) {
-    $scope.current = item;
-    $scope.parent = (item === $scope.root) ? null : item.parent;
-    $scope.items = item.children;
-  };
+  // $scope.repo = repoHelper.fetch();
+  // $scope.root = $scope.repo.current;
+  // $scope.open($scope.root);
 
   $scope.bottomReached = function() {
     alert('Congrats you scrolled to the end of the list!');

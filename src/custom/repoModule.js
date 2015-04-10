@@ -12,7 +12,7 @@ app.factory('repoHelper', function($q) {
 
   // var DOWNLOAD_TEMPLATE = 'https://github.com/:owner/:repository/raw/:branch:full';
   var DOWNLOAD_TEMPLATE = 'http://mteyss.github.io/concursos:full';
-//http://mteyss.github.io/concursos/contenidos/comunes/convenio_colectivo_trabajo/dec_2098_2008-CCT_SINEP.pdf
+  //http://mteyss.github.io/concursos/contenidos/comunes/convenio_colectivo_trabajo/dec_2098_2008-CCT_SINEP.pdf
 
   var repo = {};
 
@@ -178,8 +178,9 @@ app.factory('repoHelper', function($q) {
     };
 
     var r = buildRegExp(filter);
-
   };
+
+
 
   /*
   repo.tree
