@@ -2,7 +2,7 @@
 // Here is how to define your module
 // has dependent on mobile-angular-ui
 //
-var app = angular.module('MobileAngularUiExamples', [
+var app = angular.module('ConcursosBrowser', [
   'ngRoute',
   'mobile-angular-ui',
 
@@ -21,57 +21,18 @@ var app = angular.module('MobileAngularUiExamples', [
 // in order to avoid unwanted routing.
 //
 app.config(function($routeProvider) {
-  $routeProvider.when('/',              {templateUrl: 'home.html', reloadOnSearch: false});
-  $routeProvider.when('/contenidos',    {templateUrl: 'contenidos.html', reloadOnSearch: false});
-  $routeProvider.when('/links',         {templateUrl: 'links.html', reloadOnSearch: false});
-  $routeProvider.when('/afiliate',      {templateUrl: 'afiliate.html', reloadOnSearch: false});
-  $routeProvider.when('/acerca',        {templateUrl: 'acerca.html', reloadOnSearch: false});
-});
-
-
-// http://markdalgleish.com/2013/06/using-promises-in-angularjs-views/
-
-app.factory('myHelper', function($q, $timeout) {
-  var getStatic = function(callback) {
-    callback([ {name: 'material_helper01'}, {name: 'material_helper02'}, {name: 'material_helper03'} ]);
-  };
-
-  var getTimeout = function(callback) {
-    $timeout(function() {
-      callback([ {name: 'timeout_helper01'}, {name: 'timeout_helper02'}, {name: 'timeout_helper03'} ]);
-    }, 1000);
-  };
-
-  var getPTimeout = function(callback) {
-    var deferred = $q.defer();
-    $timeout(function() {
-      deferred.resolve([ {name: 'Ptimeout_helper01'}, {name: 'Ptimeout_helper02'}, {name: 'Ptimeout_helper03'} ]);
-    }, 1000);
-    return deferred.promise;
-  };
-
-  var getContents = function(callback) {
-    var deferred = $q.defer();
-    repo.fetch('MTEySS', 'concursos', 'gh-pages', function() {
-      repo.open('/material_estudio');
-      deferred.resolve(repo.current.children);
-    });
-    return deferred.promise;
-  };
-
-  return {
-    getPTimeout: getPTimeout,
-    getTimeout: getTimeout,
-    getStatic: getStatic,
-    getContents: getContents
-  };
+  $routeProvider.when('/',           {templateUrl: 'home.html', reloadOnSearch: false});
+  $routeProvider.when('/contenidos', {templateUrl: 'contenidos.html', reloadOnSearch: false});
+  $routeProvider.when('/links',      {templateUrl: 'links.html', reloadOnSearch: false});
+  $routeProvider.when('/afiliate',   {templateUrl: 'afiliate.html', reloadOnSearch: false});
+  $routeProvider.when('/acerca',     {templateUrl: 'acerca.html', reloadOnSearch: false});
 });
 
 //
 // For this trivial demo we have just a unique MainController
 // for everything
 //
-app.controller('MainController', [ '$rootScope', '$scope', 'myHelper', function($rootScope, $scope, myHelper) {
+app.controller('MainController', [ '$rootScope', '$scope', 'repoHelper', function($rootScope, $scope, repoHelper) {
 
   // Needed for the loading screen
   $rootScope.$on('$routeChangeStart', function(){
@@ -88,32 +49,20 @@ app.controller('MainController', [ '$rootScope', '$scope', 'myHelper', function(
   //
   // 'Scroll' screen
   //
-
-  //$scope.scrollItems = scrollItems;
-
 /*
   $scope.scrollItems = [
-    { name: 'material_estudio01' },
-    { name: 'material_estudio02' },
-    { name: 'material_estudio03' },
-    { name: 'material_estudio04' }
+    { name: 'material_estudio01' }, { name: 'material_estudio02' },
+    { name: 'material_estudio03' }, { name: 'material_estudio04' }
   ];
 */
 
-  myHelper.getContents().then(function(items) {
-    $scope.scrollItems = items;
+// http://markdalgleish.com/2013/06/using-promises-in-angularjs-views/
+  repoHelper.fetch().then(function(repo) {
+    $scope.repo = repo;
+    $scope.root = repo.current;
+    $scope.items = repo.current.children;
   });
 
-/*
-  repo.fetch('MTEySS', 'concursos', 'gh-pages', function(){
-    console.log(repo);
-    repo.open('/material_estudio');
-    $scope.scrollItems = repo.current.children;
-
-
-    console.log($scope.scrollItems);
-  });
-*/
   $scope.bottomReached = function() {
     alert('Congrats you scrolled to the end of the list!');
   }

@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <base href="/concursos/" />
+    <!-- <base href="/concursos/" /> -->
     <title>Concursos 2015 - ATE</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -20,10 +20,7 @@
     <script src="dist/js/mobile-angular-ui.gestures.min.js"></script>
   </head>
 
-  <body
-    ng-app="MobileAngularUiExamples"
-    ng-controller="MainController"
-    >
+  <body ng-app="ConcursosBrowser" ng-controller="MainController">
 
     <!-- Sidebars -->
     <div ng-include="'sidebar.html'"
@@ -75,8 +72,8 @@
     <script src="bower_components/zepto/zepto.js"></script>
     <script src="bower_components/lodash/lodash.js"></script>
 
-    <script src="src/custom/repoModule.js"></script>
     <script src="demo.js"></script>
+    <script src="src/custom/repoModule.js"></script>
 
   </body>
 </html>

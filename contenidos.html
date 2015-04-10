@@ -11,8 +11,13 @@
 
   <div class="scrollable-content" ui-scroll-bottom='bottomReached()'>
     <div class="list-group">
-      <a ng-repeat="item in scrollItems" href="#" class="list-group-item">
-        {{ item.name }} <i class="fa fa-chevron-right pull-right"></i>
+        <a href='#' class="list-group-item">
+          ...&nbsp;<i class="fa fa-level-up"></i>
+        </a>
+        <a href='#' class="list-group-item">Item <i class="fa fa-external-link pull-right"></i></a>
+
+      <a ng-repeat="item in items" href="#" class="list-group-item">
+        {{ item.name }} <i class="fa fa-folder-open pull-right"></i>
       </a>
     </div>
   </div>
