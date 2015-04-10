@@ -1,20 +1,82 @@
-<!doctype html>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <base href="/" />
+    <title>Concursos 2015 - ATE MTEySS</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimal-ui" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="yes" />
+    <link rel="shortcut icon" href="/favicon.png" type="image/x-icon" />
+    <link rel="stylesheet" href="dist/css/mobile-angular-ui-hover.min.css" />
+    <link rel="stylesheet" href="dist/css/mobile-angular-ui-base.min.css" />
+    <link rel="stylesheet" href="dist/css/mobile-angular-ui-desktop.min.css" />
+    <link rel="stylesheet" href="demo.css" />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.0/angular.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.0/angular-route.min.js"></script>
+    <script src="dist/js/mobile-angular-ui.min.js"></script>
+    <!-- Required to use $swipe, $drag and Translate services -->
+    <script src="dist/js/mobile-angular-ui.gestures.min.js"></script>
+  </head>
 
-<html lang="es-ar">
-<head>
-  <meta charset="utf-8">
+  <body
+    ng-app="MobileAngularUiExamples"
+    ng-controller="MainController"
+    >
 
-  <title>Concursos</title>
-  <meta name="description" content="Concursos en el MTEySS">
-  <meta name="author" content="ATE Trabajo">
+    <!-- Sidebars -->
+    <div ng-include="'sidebar.html'"
+            ui-track-as-search-param='true'
+            class="sidebar sidebar-left"></div>
 
-  <link rel="stylesheet" href="css/styles.css?v=1.0">
+    <div class="app" ng-swipe-right='Ui.turnOn("uiSidebarLeft")' ng-swipe-left='Ui.turnOff("uiSidebarLeft")'>
 
-</head>
+      <!-- Navbars -->
 
-<body>
+      <div class="navbar navbar-app navbar-absolute-top">
+        <div class="navbar-brand navbar-brand-center" ui-yield-to="title">
+          Concursos 2015 - ATE MTEySS
+        </div>
+        <div class="btn-group pull-left">
+          <div ui-toggle="uiSidebarLeft" class="btn sidebar-toggle">
+            <i class="fa fa-bars"></i> Menú
+          </div>
+        </div>
+        <!--
+        <div class="btn-group pull-right" ui-yield-to="navbarAction">
+          <div ui-toggle="uiSidebarRight" class="btn">
+            <i class="fa fa-comment"></i> Chat
+          </div>
+        </div>
+        -->
+      </div>
 
-  <h1>Material para concursos</h1>
+      <div class="navbar navbar-app navbar-absolute-bottom">
+        <div class="btn-group justified">
+          <a href="http://mteyss.github.io/" class="btn btn-navbar">Desarrollado por trabajadores expulsados del MTEySS</a>
+        </div>
+      </div>
 
-</body>
+      <!-- App Body -->
+      <div class="app-body" ng-class="{loading: loading}">
+        <div ng-show="loading" class="app-content-loading">
+          <i class="fa fa-spinner fa-spin loading-spinner"></i>
+        </div>
+        <div class="app-content">
+          <ng-view></ng-view>
+        </div>
+      </div>
+
+    </div><!-- ~ .app -->
+
+    <div ui-yield-to="modals"></div>
+
+    <script src="bower_components/zepto/zepto.js"></script>
+    <script src="bower_components/lodash/lodash.js"></script>
+
+    <script src="src/custom/repoModule.js"></script>
+    <script src="demo.js"></script>
+
+  </body>
 </html>
