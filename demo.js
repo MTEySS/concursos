@@ -60,11 +60,17 @@ app.controller('MainController', [ '$rootScope', '$scope', 'repoHelper', functio
   repoHelper.fetch().then(function(repo) {
     $scope.repo = repo;
     $scope.root = repo.current;
-    $scope.items = repo.current.children;
+    $scope.open($scope.root);
   });
+
+  $scope.open = function(item) {
+    $scope.current = item;
+    $scope.parent = (item === $scope.root) ? null : item.parent;
+    $scope.items = item.children;
+  };
 
   $scope.bottomReached = function() {
     alert('Congrats you scrolled to the end of the list!');
-  }
+  };
 
 }]);

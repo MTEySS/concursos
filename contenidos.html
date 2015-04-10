@@ -11,14 +11,19 @@
 
   <div class="scrollable-content" ui-scroll-bottom='bottomReached()'>
     <div class="list-group">
-        <a href='#' class="list-group-item">
-          ...&nbsp;<i class="fa fa-level-up"></i>
-        </a>
-        <a href='#' class="list-group-item">Item <i class="fa fa-external-link pull-right"></i></a>
-
-      <a ng-repeat="item in items" href="#" class="list-group-item">
-        {{ item.name }} <i class="fa fa-folder-open pull-right"></i>
+      <a class="list-group-item" ng-click='open(parent)' ng-if='parent'>
+        ...&nbsp;<i class="fa fa-level-up"></i>
       </a>
+
+      <div ng-repeat="item in items">
+        <a class="list-group-item" ng-click='open(item)' ng-if='item.type === "folder"'>
+          {{ item.name }} <i class="fa fa-folder-open pull-right"></i>
+        </a>
+        <a class="list-group-item" ng-if='item.type === "file"'
+        href="{{item.url}}" target='_blank'>
+          {{ item.name }} <i class="fa fa-external-link pull-right"></i>
+        </a>
+      </div>
     </div>
   </div>
 

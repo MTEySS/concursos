@@ -1,5 +1,7 @@
 app.factory('repoHelper', function($q) {
 
+  'use strict';
+
   var REPO_USER = 'MTEySS';
   var REPO_NAME = 'concursos';
   var REPO_BRANCH = 'gh-pages';
@@ -8,9 +10,10 @@ app.factory('repoHelper', function($q) {
   var API_TEMPLATE = 'https://api.github.com/repos/:owner/:repository/git/trees/:branch?recursive=1';
   // https://api.github.com/repos/MTEySS/concursos/git/trees/gh-pages?recursive=1 > test.json
 
-  var DOWNLOAD_TEMPLATE = 'https://github.com/:owner/:repository/raw/:branch:full';
+  // var DOWNLOAD_TEMPLATE = 'https://github.com/:owner/:repository/raw/:branch:full';
+  var DOWNLOAD_TEMPLATE = 'http://mteyss.github.io/concursos:full';
+//http://mteyss.github.io/concursos/contenidos/comunes/convenio_colectivo_trabajo/dec_2098_2008-CCT_SINEP.pdf
 
-  // https://github.com/MTEySS/concursos/raw/gh-pages/material_estudio/comunes/convenio_colectivo_trabajo/dec_2098_2008-CCT_SINEP.pdf
   var repo = {};
 
   repo.raw = null;
@@ -151,7 +154,7 @@ app.factory('repoHelper', function($q) {
       .replace(/í/g, 'i')
       .replace(/ó/g, 'o')
       .replace(/ú/g, 'u')
-      .replace(/ú/g, 'u')
+      .replace(/ñ/g, 'ni')
     ;
   };
 
