@@ -1,4 +1,4 @@
-app.factory('repoHelper', function($q) {
+app.factory('repoHelper', function($http, $q) {
 
   'use strict';
 
@@ -33,8 +33,8 @@ app.factory('repoHelper', function($q) {
       .replace(':branch', repo.branch)
     ;
 
-    $.getJSON(repo.url, function(data) {
-      repo.parse(data.tree);
+    $http.get(repo.url).then(function(response) {
+      repo.parse(response.data.tree);
       callback(repo);
     });
 
@@ -69,7 +69,7 @@ app.factory('repoHelper', function($q) {
     });
   };
 
-  repo.parseTree = function parseTree(raw, parent, path) {
+  repo.parseTree = function(raw, root) {
 
     var parseChildren = function parseChildren(data, parent, path) {
 
@@ -104,7 +104,9 @@ app.factory('repoHelper', function($q) {
       level: 0
     };
 
-    parseChildren(repo.data, tree, '/');
+    root = root || REPO_ROOT + '/';
+
+    parseChildren(repo.data, tree, root);
 
     return tree;
   };
@@ -205,7 +207,7 @@ app.factory('repoHelper', function($q) {
   var fetch = function(callback) {
     var deferred = $q.defer();
     repo.fetch(REPO_USER, REPO_NAME, REPO_BRANCH, function() {
-      repo.open(REPO_ROOT);
+      // repo.open(REPO_ROOT);
       deferred.resolve(repo);
     });
     return deferred.promise;
