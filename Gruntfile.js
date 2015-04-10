@@ -4,8 +4,6 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
-
-
     concurrent: {
       devel: {
         tasks: ['connect:demo', 'watch'],
