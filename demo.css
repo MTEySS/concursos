@@ -163,7 +163,7 @@ input.scrollable-header {
 and (max-width : 768px) {
   /* Styles */
   div.contenidos-items a {
-    font-size: 18px;
+    font-size: 16px;
   }
 
 }
