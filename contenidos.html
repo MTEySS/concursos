@@ -17,11 +17,11 @@
 
       <div ng-repeat="item in items">
         <a class="list-group-item" ng-click='open(item)' ng-if='item.type === "folder"'>
-          {{ item.name }} <i class="fa fa-folder-open pull-right"></i>
+          {{ item.name | pretty }} <i class="fa fa-folder-open pull-right"></i>
         </a>
         <a class="list-group-item" ng-if='item.type === "file"'
         href="{{item.url}}" target='_blank'>
-          {{ item.name }} <i class="fa fa-external-link pull-right"></i>
+          {{ item.name | pretty }} <i class="fa fa-external-link pull-right"></i>
         </a>
       </div>
     </div>
