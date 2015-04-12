@@ -3,6 +3,7 @@
 // has dependent on mobile-angular-ui
 //
 var app = angular.module('ConcursosBrowser', [
+  'concursosFilters',
   'ngRoute',
   'mobile-angular-ui',
 
