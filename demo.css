@@ -163,6 +163,15 @@ div.faq-answer {
   text-align: justify;
 }
 
+div.acerca-de {
+  text-align: justify;
+  font-size: 1.2em;
+}
+
+div.acerca-de div.logo-sistemas {
+  text-align: center; 
+}
+
 @media only screen
 and (max-width : 768px) {
   /* Styles */
