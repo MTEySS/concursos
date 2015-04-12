@@ -159,6 +159,10 @@ input.scrollable-header {
   border-bottom: 3px solid #ccc;
 }
 
+div.faq-answer {
+  text-align: justify;
+}
+
 @media only screen
 and (max-width : 768px) {
   /* Styles */

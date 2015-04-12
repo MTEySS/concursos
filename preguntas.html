@@ -1,9 +1,14 @@
+<div ui-content-for="title">
+  <span>Preguntas frecuentes</span>
+</div>
+
 <div class="scrollable">
   <div class="scrollable-content">
 
     <div class="list-group text-center">
       <div class="list-group-item list-group-item-home">
-        <h1>Material de estudio para Concursos <small>2015</small>
+        <h1>Bibioteca digital<br />
+          Concursos <small>2015</small>
         </h1>
         Desde la <a href='http://www.ate-ministeriodetrabajo.blogspot.com.ar/' target='_blank'>Junta Interna de ATE</a> del Ministerio de Trabajo ponemos a disposición de nuestros companer@s esta herramienta para ayudarlos a prepararse para los Concursos 2015. Hacé click <a href='#/contenidos'>aquí</a> para consultar el material de estudio.
       </div>
@@ -17,23 +22,28 @@
         <div class="media-body">
           <h3 class="media-heading">Preguntas frecuentes</h3>
         </div>
-
-        <hr />
-
-        <ul>
-          <li>
-            <h3>Tengo un contrato PNUD, ¿puedo concursar?</h3>
-            Sí, siempre y cuando la convocatoria del cargo sea “Abierta” y cumpla con los requisitos educativos del Nivel.
-          </li>
-
-        </ul>
-
-
-
       </div>
 
+      <div class="section">
+        <div class="panel-group"
 
-      <hr />
+          ui-state='myAccordion'
+          ui-default='0'>
+
+          <div class="panel panel-default" ng-repeat="faq in faqs">
+            <div class="panel-heading" ui-set="{'myAccordion': $index}">
+
+              <h4 class="panel-title">
+                  {{faq.question}}
+              </h4>
+            </div>
+            <div ui-if="myAccordion == $index" ui-scope-context='$index'>
+              <div class="panel-body faq-answer" ng-bind-html="faq.answer"></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
 
       <div class="list-group-item list-group-item-home media">
         <div>
@@ -47,7 +57,10 @@
         </div>
       </div>
 
+
     </div>
+
+
 
   </div>
 </div>

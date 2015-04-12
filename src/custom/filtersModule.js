@@ -10,16 +10,17 @@ angular.module('concursosFilters', []).filter('pretty', function() {
       'formacion': 'formación',
       'regimen': 'régimen',
       'presentacion': 'presentación',
+      'modificacion': 'modificación',
       'triptico': 'tríptico'
     };
 
     for (key in trans) {
       i = i.replace(key, trans[key]);
     }
-    
+
     // expand res -> resolucion
     i = i.replace(/\bres_/ig, 'resolucion_')
-    console.log(i);
+
     // expand dec -> decreto
     i = i.replace(/\bdec_/ig, 'decreto_')
 
@@ -27,7 +28,7 @@ angular.module('concursosFilters', []).filter('pretty', function() {
     i = i.substr(0,1).toUpperCase() + i.substr(1);
 
     // replace _ with / when in front of years
-    i = i.replace(/\d_((?:19|20)\d{2})\b/g, '/$1');
+    i = i.replace(/(\d)_((?:19|20)\d{2})\b/g, '$1/$2');
 
     //replace _ with spaces
     i = i.replace(/_/g, ' ');

@@ -5,6 +5,7 @@
 var app = angular.module('ConcursosBrowser', [
   'concursosFilters',
   'ngRoute',
+  'ngSanitize',
   'mobile-angular-ui',
 
   // touch/drag feature: this is from 'mobile-angular-ui.gestures.js'
@@ -24,8 +25,7 @@ var app = angular.module('ConcursosBrowser', [
 app.config(function($routeProvider) {
   $routeProvider.when('/',           {templateUrl: 'home.html', reloadOnSearch: false});
   $routeProvider.when('/contenidos', {templateUrl: 'contenidos.html', reloadOnSearch: false});
-//  $routeProvider.when('/preguntas',  {templateUrl: 'preguntas.html', reloadOnSearch: false});
-  $routeProvider.when('/preguntas',  {templateUrl: 'accordion.html', reloadOnSearch: false});
+  $routeProvider.when('/preguntas',  {templateUrl: 'preguntas.html', reloadOnSearch: false});
   $routeProvider.when('/links',      {templateUrl: 'links.html', reloadOnSearch: false});
   $routeProvider.when('/afiliate',   {templateUrl: 'afiliate.html', reloadOnSearch: false});
   $routeProvider.when('/acerca',     {templateUrl: 'acerca.html', reloadOnSearch: false});
@@ -35,7 +35,9 @@ app.config(function($routeProvider) {
 // For this trivial demo we have just a unique MainController
 // for everything
 //
-app.controller('MainController', [ '$rootScope', '$scope', 'repoHelper', function($rootScope, $scope, repoHelper) {
+app.controller('MainController', [
+  '$rootScope', '$scope', 'repoHelper', 'faqs',
+  function($rootScope, $scope, repoHelper, faqs) {
 
   // Needed for the loading screen
   $rootScope.$on('$routeChangeStart', function(){
@@ -76,6 +78,9 @@ app.controller('MainController', [ '$rootScope', '$scope', 'repoHelper', functio
   // $scope.repo = repoHelper.fetch();
   // $scope.root = $scope.repo.current;
   // $scope.open($scope.root);
+
+  // preguntas frecuentes
+  $scope.faqs = faqs;
 
   $scope.bottomReached = function() {
     alert('Congrats you scrolled to the end of the list!');
