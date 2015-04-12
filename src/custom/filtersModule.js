@@ -11,6 +11,8 @@ angular.module('concursosFilters', []).filter('pretty', function() {
       'regimen': 'régimen',
       'presentacion': 'presentación',
       'modificacion': 'modificación',
+      'revision': 'revisión',
+      'examen': 'exámen',
       'triptico': 'tríptico'
     };
 
