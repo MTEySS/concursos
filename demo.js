@@ -4,6 +4,7 @@
 //
 var app = angular.module('ConcursosBrowser', [
   'concursosFilters',
+  'bookmarkModule',
   'ngRoute',
   'ngSanitize',
   'mobile-angular-ui',
