@@ -83,8 +83,10 @@ app.controller('MainController', [
   // preguntas frecuentes
   $scope.faqs = faqs;
 
+/*
   $scope.bottomReached = function() {
     alert('Congrats you scrolled to the end of the list!');
   };
+*/
 
 }]);
