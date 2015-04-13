@@ -3,12 +3,20 @@ angular.module('concursosFilters', []).filter('pretty', function() {
   var translate = function(text) {
     var trans = [
       { search: 'publico'       , replace: 'público' },
+      { search: 'publicos'      , replace: 'públicos' },
       { search: 'publica'       , replace: 'pública' },
+      { search: 'publicas'      , replace: 'públicas' },
       { search: 'etica'         , replace: 'ética' },
       { search: 'regimen'       , replace: 'régimen' },
       { search: 'examen'        , replace: 'exámen' },
       { search: 'triptico'      , replace: 'tríptico' },
       { search: 'secretaria'    , replace: 'secretaría' },
+      { search: 'jovenes'       , replace: 'jóvenes' },
+      { search: 'linea'         , replace: 'línea' },
+      { search: 'credito'       , replace: 'crédito' },
+      { search: 'unico'         , replace: 'único' },
+      { search: 'economico'     , replace: 'económico' },
+      { search: 'mas'           , replace: 'más' },
       { search: /sion\b/ig      , replace: 'sión' },
       { search: /cion\b/ig      , replace: 'ción' }
     ];
@@ -27,7 +35,7 @@ angular.module('concursosFilters', []).filter('pretty', function() {
     i = translate(i);
 
     // expand res -> resolucion
-    i = i.replace(/\bres\s/ig, 'resolucion ')
+    i = i.replace(/\bres\s/ig, 'resolución ')
 
     // expand dec -> decreto
     i = i.replace(/\bdec\s/ig, 'decreto ')

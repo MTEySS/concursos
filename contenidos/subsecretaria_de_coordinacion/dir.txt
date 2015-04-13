@@ -1,0 +1,39 @@
+.:
+direccion_general_de_asuntos_juridicos
+dir.txt
+
+./direccion_general_de_asuntos_juridicos:
+./direccion_general_de_asuntos_juridicos/derecho_laboral_y_fiscalizacion_del_trabajo
+./direccion_general_de_asuntos_juridicos/gestion_de_compras_y_contrataciones
+
+./direccion_general_de_asuntos_juridicos/derecho_laboral_y_fiscalizacion_del_trabajo/:
+Decreto 1116-2000- Reglamentacion_Ley_25344.docx
+Decreto 1169-1996 -Instancia_Obligatoria_Conciliacion_Laboral.docx
+Decreto 1694-2006-Prestacion_de_Servicios_Eventuales.docx
+Decreto 2140-1991 -DEUDA_PUBLICA_REGLAMENTACION.docx
+Ley 11683-PROCEDIMIENTO_FISCALES.docx
+Ley 17250-CAJAS_NACIONALES_DE_PREVISION.docx
+Ley 18695 -Procedimiento_Sanciones_por_Infracciones .docx
+Ley 20744-REGIMEN_DE_CONTRATO_DE_TRABAJO.docx
+Ley 22250-INDUSTRIA_DE_LA_CONSTRUCCION_NUEVO_REGIMEN.docx
+Ley 23982-DEUDA_PUBLICA_CONSOLIDACION.docx
+Ley 24070-Deuda_Publica_Subrogacion_de_deudas.docx
+Ley 24372-SERVICIO_PENITENCIARIO_FEDERAL.docx
+Ley 24635-Instancia_Obligatoria_Conciliacion_Laboral.docx
+Ley 25212-Ratificacion_del_Pacto_Federal_del_Trabajo.docx
+Ley 25344-EMERGENCIA_ECONOMICO_FINANCIERA.docx
+Ley 25877-ORDENAMIENTO_REGIMEN_LABORAL.docx
+Ley 26476-REGULARIZACION_IMPOSITIVA.docx
+Ley 26660-FUERZAS_DE_SEGURIDAD.docx
+Ley 26940-PROMOCION_DEL_TRABAJO_REGISTRADO_Y_PREVENCION_DEL_FRAUDE_LABORAL.docx
+Res 1225-2007-Trabajo-Servicios_Eventuales_Autoridad_de_Aplicacion.docx
+Res 655-2005-Trabajo-Procedimiento_comprobacion_y_juzgamiento_infracciones.docx
+Res Gral 1566-AFIP-Obligaciones_del_Sistema_de_la_Seguridad_Social.docx
+Res Gral 1779-2004-AFIP-SIstema_Unico_Seguridad_Social.docx
+
+./direccion_general_de_asuntos_juridicos/gestion_de_compras_y_contrataciones:
+Decreto 1023-2001-Regimen_de_Contrataciones_del_Estado.docx
+Decreto 1344-2007-Reglamentacion_Ley_24156.docx
+Decreto 893-2012-Reglamentacion_Decreto_1023-2001.docx
+Ley 13.064-Obras_Publicas.docx
+Ley 24156-Administracion_Financiera_y_Sistemas_de_Control.docx
