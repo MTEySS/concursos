@@ -8,6 +8,7 @@ angular.module('concursosFilters', []).filter('pretty', function() {
       { search: 'regimen'       , replace: 'régimen' },
       { search: 'examen'        , replace: 'exámen' },
       { search: 'triptico'      , replace: 'tríptico' },
+      { search: 'secretaria'    , replace: 'secretaría' },
       { search: /sion\b/ig      , replace: 'sión' },
       { search: /cion\b/ig      , replace: 'ción' }
     ];
