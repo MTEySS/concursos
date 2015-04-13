@@ -1,5 +1,5 @@
 <div ui-content-for="title">
-  <span>Material de estudio</span>
+  <span>Biblioteca digital de Concursos</span>
 </div>
 
 <div class="scrollable" ui-state="searchBar">
@@ -17,7 +17,7 @@
 
       <div ng-repeat="item in items">
         <a class="list-group-item" ng-click='open(item)' ng-if='item.type === "folder"'>
-          {{ item.name | pretty }} <i class="fa fa-folder-open pull-right"></i>
+          <b>{{ item.name | pretty }} <i class="fa fa-folder-open pull-right"></i></b>
         </a>
         <a class="list-group-item" ng-if='item.type === "file"'
         href="{{item.url}}" target='_blank'>

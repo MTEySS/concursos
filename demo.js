@@ -25,7 +25,7 @@ var app = angular.module('ConcursosBrowser', [
 //
 app.config(function($routeProvider) {
   $routeProvider.when('/',           {templateUrl: 'home.html', reloadOnSearch: false});
-  $routeProvider.when('/contenidos', {templateUrl: 'contenidos.html', reloadOnSearch: false});
+  $routeProvider.when('/biblioteca', {templateUrl: 'biblioteca.html', reloadOnSearch: false});
   $routeProvider.when('/preguntas',  {templateUrl: 'preguntas.html', reloadOnSearch: false});
   $routeProvider.when('/links',      {templateUrl: 'links.html', reloadOnSearch: false});
   $routeProvider.when('/afiliate',   {templateUrl: 'afiliate.html', reloadOnSearch: false});
