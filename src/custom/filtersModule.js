@@ -16,7 +16,8 @@ angular.module('concursosFilters', []).filter('pretty', function() {
       { search: 'credito'       , replace: 'crédito' },
       { search: 'unico'         , replace: 'único' },
       { search: 'economico'     , replace: 'económico' },
-      { search: 'mas'           , replace: 'más' },
+      { search: 'prorroga'      , replace: 'prórroga' },
+      { search: /\bmas\b/       , replace: 'más' },
       { search: /sion\b/ig      , replace: 'sión' },
       { search: /cion\b/ig      , replace: 'ción' }
     ];
