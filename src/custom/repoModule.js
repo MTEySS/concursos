@@ -2,14 +2,14 @@ app.factory('repoHelper', function($http, $q, contents) {
 
   'use strict';
 
-  var FETCH_REPO = false;
+  var FETCH_REPO = true;
 
   var REPO_USER = 'MTEySS';
   var REPO_NAME = 'concursos';
   var REPO_BRANCH = 'gh-pages';
   var REPO_ROOT = '/contenidos';
 
-  var API_TEMPLATE = 'https://api.github.com/repos/:owner/:repository/git/trees/:branch?recursive=1';
+  var API_TEMPLATE = 'http://api.github.com/repos/:owner/:repository/git/trees/:branch?recursive=1';
   // https://api.github.com/repos/MTEySS/concursos/git/trees/gh-pages?recursive=1 > test.json
 
   // var DOWNLOAD_TEMPLATE = 'https://github.com/:owner/:repository/raw/:branch:full';
