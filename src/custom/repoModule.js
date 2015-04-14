@@ -1,6 +1,8 @@
-app.factory('repoHelper', function($http, $q) {
+app.factory('repoHelper', function($http, $q, contents) {
 
   'use strict';
+
+  var FETCH_REPO = false;
 
   var REPO_USER = 'MTEySS';
   var REPO_NAME = 'concursos';
@@ -33,10 +35,15 @@ app.factory('repoHelper', function($http, $q) {
       .replace(':branch', repo.branch)
     ;
 
-    $http.get(repo.url).then(function(response) {
-      repo.parse(response.data.tree);
+    if (FETCH_REPO) {
+      $http.get(repo.url).then(function(response) {
+        repo.parse(response.data.tree);
+        callback(repo);
+      });
+    } else {
+      repo.parse(contents);
       callback(repo);
-    });
+    }
 
   };
 
