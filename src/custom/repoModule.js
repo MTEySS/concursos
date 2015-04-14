@@ -115,7 +115,21 @@ app.factory('repoHelper', function($http, $q, contents) {
 
     parseChildren(repo.data, tree, root);
 
+    repo.countChildren(tree);
+
     return tree;
+  };
+
+  repo.countChildren = function countChildren(tree) {
+    var count = 0;
+    if (!tree.children || !tree.type === 'folder') return count;
+
+    tree.children.forEach(function(leaf) {
+      if (leaf.type === 'file') count++;
+      if (leaf.type === 'folder') count += countChildren(leaf);
+    })
+    tree.childrenCount = count;
+    return count;
   };
 
   repo.parse = function(rawData) {

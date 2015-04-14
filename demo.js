@@ -31,7 +31,7 @@ app.config(function($routeProvider) {
   //   controller: 'bibliotecaCtrl',
   //   reloadOnSearch: false
   // });
-  // $routeProvider.when('/biblioteca/:path*', {
+  // $routeProvider.when('/biblioteca/?:path*?', {
   //   templateUrl: 'biblioteca.html',
   //   controller: 'bibliotecaCtrl',
   //   reloadOnSearch: false
@@ -73,6 +73,14 @@ app.controller('MainController', [
 */
 
   $scope.open = function(item) {
+    if (_.isString(item)) {
+      if (item === '') {
+        item = $scope.root;
+      } else {
+        item = $scope.repo.find(item);
+        if (!item) item = $scope.root;
+      }
+    }
     $scope.current = item;
     $scope.parent = (item === $scope.root) ? null : item.parent;
     $scope.items = item.children;

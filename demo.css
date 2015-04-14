@@ -173,8 +173,24 @@ div.acerca-de div.logo-sistemas {
 }
 
 div.scrollable-content a.biblioteca-folder-up {
+/*
   background: #f7f7f7;
   color: #007aff;
+*/
+  background-color: #D9EDF7;
+  border-color: #BCE8F1;
+  color: #31708F;
+}
+
+span.biblioteca-file-count {
+  font-size: 0.8em;
+  font-style: italic;
+  font-weight: bold;
+  color: #A9A9A9;
+}
+
+div.biblioteca-item a.biblioteca-file {
+  font-size: 0.9em;
 }
 
 @media only screen

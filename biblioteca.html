@@ -15,11 +15,15 @@
         <i class="fa fa-reply-all"></i>&nbsp;&nbsp;volver a <b>{{ parent.name | pretty }}</b>
       </a>
 
-      <div ng-repeat="item in items">
+      <div class="biblioteca-item" ng-repeat="item in items">
         <a class="list-group-item" ng-click='open(item)' ng-if='item.type === "folder"'>
-          <b>{{ item.name | pretty }} <i class="fa fa-folder-open pull-right"></i></b>
+          <b>{{ item.name | pretty }}</b>
+          <span class="biblioteca-file-count">
+          &nbsp;{{ item.childrenCount }} archivos
+          </span>
+          <i class="fa fa-folder-open pull-right"></i>
         </a>
-        <a class="list-group-item" ng-if='item.type === "file"'
+        <a class="list-group-item biblioteca-file" ng-if='item.type === "file"'
         href="{{item.url}}" target='_blank'>
           {{ item.name | pretty }} <i class="fa fa-external-link pull-right"></i>
         </a>
