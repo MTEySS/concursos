@@ -1,5 +1,5 @@
 <div ui-content-for="title">
-  <span>Biblioteca digital de Concursos</span>
+  <span>{{ current.name | pretty }}</span>
 </div>
 
 <div class="scrollable" ui-state="searchBar">
@@ -11,8 +11,8 @@
 
   <div class="scrollable-content" ui-scroll-bottom='bottomReached()'>
     <div class="list-group contenidos-items">
-      <a class="list-group-item" ng-click='open(parent)' ng-if='parent'>
-        ...&nbsp;<i class="fa fa-level-up"></i>
+      <a class="list-group-item biblioteca-folder-up" ng-click='open(parent)' ng-if='parent'>
+        <i class="fa fa-reply-all"></i>&nbsp;&nbsp;volver a <b>{{ parent.name | pretty }}</b>
       </a>
 
       <div ng-repeat="item in items">

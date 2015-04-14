@@ -51,11 +51,11 @@ app.controller('MainController', [
   function($rootScope, $scope, repoHelper, faqs) {
 
   // Needed for the loading screen
-  $rootScope.$on('$routeChangeStart', function(){
+  $rootScope.$on('$routeChangeStart', function() {
     $rootScope.loading = true;
   });
 
-  $rootScope.$on('$routeChangeSuccess', function(){
+  $rootScope.$on('$routeChangeSuccess', function() {
     $rootScope.loading = false;
   });
 
@@ -72,7 +72,6 @@ app.controller('MainController', [
   ];
 */
 
-
   $scope.open = function(item) {
     $scope.current = item;
     $scope.parent = (item === $scope.root) ? null : item.parent;
@@ -83,6 +82,8 @@ app.controller('MainController', [
   repoHelper.fetch().then(function(repo) {
     $scope.repo = repo;
     $scope.root = repo.current;
+    $scope.root.name = 'Biblioteca digital de Concursos';
+
     $scope.open($scope.root);
   });
 

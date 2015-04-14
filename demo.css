@@ -169,7 +169,12 @@ div.acerca-de {
 }
 
 div.acerca-de div.logo-sistemas {
-  text-align: center; 
+  text-align: center;
+}
+
+div.scrollable-content a.biblioteca-folder-up {
+  background: #f7f7f7;
+  color: #007aff;
 }
 
 @media only screen
