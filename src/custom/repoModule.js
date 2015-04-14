@@ -2,7 +2,7 @@ app.factory('repoHelper', function($http, $q, contents) {
 
   'use strict';
 
-  var FETCH_REPO = true;
+  var FETCH_REPO = false;
 
   var REPO_USER = 'MTEySS';
   var REPO_NAME = 'concursos';
