@@ -19,8 +19,8 @@ angular.module('concursosFilters', []).filter('pretty', function() {
       { search: 'prorroga'      , replace: 'prórroga' },
       { search: 'juridicos'     , replace: 'jurídicos' },
       { search: /\bmas\b/       , replace: 'más' },
-      { search: /sion\b/ig      , replace: 'sión' },
-      { search: /cion\b/ig      , replace: 'ción' }
+      { search: /ion\b/ig       , replace: 'ión' },
+      { search: /ion\b/ig       , replace: 'ión' }
     ];
 
     trans.forEach(function(t) {
