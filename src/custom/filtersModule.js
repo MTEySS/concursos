@@ -16,6 +16,7 @@ angular.module('concursosFilters', []).filter('pretty', function() {
       { search: 'credito'       , replace: 'crédito' },
       { search: 'unico'         , replace: 'único' },
       { search: 'economico'     , replace: 'económico' },
+      { search: 'domestico'     , replace: 'doméstico' },
       { search: 'prorroga'      , replace: 'prórroga' },
       { search: 'juridicos'     , replace: 'jurídicos' },
       { search: 'minima'        , replace: 'mínima' },
