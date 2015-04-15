@@ -36,10 +36,11 @@ app.config(function($routeProvider) {
     controller: 'bibliotecaCtrl',
     reloadOnSearch: false
   });
-  $routeProvider.when('/preguntas',  {templateUrl: 'preguntas.html', reloadOnSearch: false});
-  $routeProvider.when('/links',      {templateUrl: 'links.html', reloadOnSearch: false});
-  $routeProvider.when('/afiliate',   {templateUrl: 'afiliate.html', reloadOnSearch: false});
-  $routeProvider.when('/acerca',     {templateUrl: 'acerca.html', reloadOnSearch: false});
+  $routeProvider.when('/preguntas',      {templateUrl: 'preguntas.html', reloadOnSearch: false});
+  $routeProvider.when('/links',          {templateUrl: 'links.html', reloadOnSearch: false});
+  $routeProvider.when('/afiliate',       {templateUrl: 'afiliate.html', reloadOnSearch: false});
+  $routeProvider.when('/acerca',         {templateUrl: 'acerca.html', reloadOnSearch: false});
+  $routeProvider.when('/desarrollado',   {templateUrl: 'desarrollado.html', reloadOnSearch: false});
 });
 
 //
