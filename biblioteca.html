@@ -1,5 +1,11 @@
 <div ui-content-for="title">
-  <span>{{ current.name | pretty }}</span>
+  <span>
+    <span ng-if='parent'>
+      <a href='#/biblioteca'><i class="fa fa-home"></i></a>
+      &nbsp;|&nbsp;
+    </span>
+    {{ current.name | pretty }}
+  </span>
 </div>
 
 <div class="scrollable" ui-state="searchBar">
@@ -11,14 +17,15 @@
 
   <div class="scrollable-content" ui-scroll-bottom='bottomReached()'>
     <div class="list-group contenidos-items">
-      <a class="list-group-item biblioteca-folder-up" ng-click='open(parent)' ng-if='parent'>
+      <a class="list-group-item biblioteca-folder-up"
+        href='#/biblioteca{{ parent.full }}' ng-if='parent'>
         <i class="fa fa-reply-all"></i>&nbsp;&nbsp;volver a <b>{{ parent.name | pretty }}</b>
       </a>
 
       <div class="biblioteca-item" ng-repeat="item in items">
-        <a class="list-group-item" ng-click='open(item)' ng-if='item.type === "folder"'>
+        <a class="list-group-item"
+          href='#/biblioteca{{ item.full }}' ng-if='item.type === "folder"'>
           <b>{{ item.name | pretty }}</b>
-          <!--({{ item.full }})-->
           <span class="biblioteca-file-count">
           &nbsp;{{ item.childrenCount }} archivos
           </span>
