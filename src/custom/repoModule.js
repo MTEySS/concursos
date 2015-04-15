@@ -23,11 +23,12 @@ app.factory('repoHelper', function($http, $q, contents) {
   repo.tree = [];
   repo.current = [];
 
-  repo.fetch = function(owner, repository, branch, callback) {
+  repo.fetch = function(owner, repository, branch, root, callback) {
 
     repo.owner = owner;
     repo.repository = repository;
     repo.branch = branch;
+    repo.root = root;
 
     repo.url = API_TEMPLATE
       .replace(':owner', repo.owner)
@@ -37,19 +38,33 @@ app.factory('repoHelper', function($http, $q, contents) {
 
     if (FETCH_REPO) {
       $http.get(repo.url).then(function(response) {
-        repo.parse(response.data.tree);
+        repo.parse(response.data.tree, root);
         callback(repo);
       });
     } else {
-      repo.parse(contents);
+      repo.parse(contents, root);
       callback(repo);
     }
 
   };
 
-  repo.parseData = function parseData(raw) {
+  repo.parse = function(rawData, root) {
 
-    var url = function(full) {
+    rawData = _.filter(rawData, function(file) {
+      var path = file.path;
+      if (!_.startsWith(path, '/')) path = '/' + path;
+      return _.startsWith(path, root + '/');
+    });
+
+    repo.raw = rawData;
+    repo.data = repo.parseData(repo.raw, root);
+    repo.tree = repo.parseTree(repo.data);
+    repo.current = repo.tree;
+  };
+
+  repo.parseData = function parseData(raw, root) {
+
+    var buildUrl = function(full) {
       return DOWNLOAD_TEMPLATE
         .replace(':owner', repo.owner)
         .replace(':repository', repo.repository)
@@ -59,18 +74,28 @@ app.factory('repoHelper', function($http, $q, contents) {
     };
 
     return raw.map(function(file) {
+
       var full = '/' + file.path;
+
+      var url = buildUrl(full);
+
+      // remove root from file.path and file.full
+      if (_.startsWith(full, root)) {
+        full = full.substr(root.length);
+        if (!_.startsWith(full, '/')) full = '/' + full;
+      }
 
       // parse file path and file name
       var matches = /^(.*\/)(.*)/.exec(full);
       var path = matches[1];
       var name = matches[2];
+
       return {
         name: name,
         path: path,
         full: full,
         type: file.type === 'tree' ? 'folder' : 'file',
-        url: url(full),
+        url: url,
         size: file.size
       };
     });
@@ -113,7 +138,7 @@ app.factory('repoHelper', function($http, $q, contents) {
 
     root = root || REPO_ROOT + '/';
 
-    parseChildren(repo.data, tree, root);
+    parseChildren(repo.data, tree, '/');
 
     repo.countChildren(tree);
 
@@ -130,13 +155,6 @@ app.factory('repoHelper', function($http, $q, contents) {
     })
     tree.childrenCount = count;
     return count;
-  };
-
-  repo.parse = function(rawData) {
-    repo.raw = rawData;
-    repo.data = repo.parseData(repo.raw);
-    repo.tree = repo.parseTree(repo.data);
-    repo.current = repo.tree;
   };
 
   repo.find = function(full) {
@@ -227,7 +245,7 @@ app.factory('repoHelper', function($http, $q, contents) {
   */
   var fetch = function(callback) {
     var deferred = $q.defer();
-    repo.fetch(REPO_USER, REPO_NAME, REPO_BRANCH, function() {
+    repo.fetch(REPO_USER, REPO_NAME, REPO_BRANCH, REPO_ROOT, function() {
       // repo.open(REPO_ROOT);
       deferred.resolve(repo);
     });

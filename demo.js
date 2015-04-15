@@ -25,17 +25,17 @@ var app = angular.module('ConcursosBrowser', [
 //
 app.config(function($routeProvider) {
   $routeProvider.when('/',           {templateUrl: 'home.html', reloadOnSearch: false});
-  $routeProvider.when('/biblioteca', {templateUrl: 'biblioteca.html', reloadOnSearch: false});
+  // $routeProvider.when('/biblioteca', {templateUrl: 'biblioteca.html', reloadOnSearch: false});
   // $routeProvider.when('/biblioteca', {
   //   templateUrl: 'biblioteca.html',
   //   controller: 'bibliotecaCtrl',
   //   reloadOnSearch: false
   // });
-  // $routeProvider.when('/biblioteca/?:path*?', {
-  //   templateUrl: 'biblioteca.html',
-  //   controller: 'bibliotecaCtrl',
-  //   reloadOnSearch: false
-  // });
+  $routeProvider.when('/biblioteca/?:path*?', {
+    templateUrl: 'biblioteca.html',
+    controller: 'bibliotecaCtrl',
+    reloadOnSearch: false
+  });
   $routeProvider.when('/preguntas',  {templateUrl: 'preguntas.html', reloadOnSearch: false});
   $routeProvider.when('/links',      {templateUrl: 'links.html', reloadOnSearch: false});
   $routeProvider.when('/afiliate',   {templateUrl: 'afiliate.html', reloadOnSearch: false});
@@ -73,13 +73,11 @@ app.controller('MainController', [
 */
 
   $scope.open = function(item) {
-    if (_.isString(item)) {
-      if (item === '') {
-        item = $scope.root;
-      } else {
-        item = $scope.repo.find(item);
-        if (!item) item = $scope.root;
-      }
+    if (!item || item == '') {
+      item = $scope.root;
+    } else if (_.isString(item)) {
+      item = $scope.repo.find(item);
+      if (!item) item = $scope.root;
     }
     $scope.current = item;
     $scope.parent = (item === $scope.root) ? null : item.parent;

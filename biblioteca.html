@@ -18,6 +18,7 @@
       <div class="biblioteca-item" ng-repeat="item in items">
         <a class="list-group-item" ng-click='open(item)' ng-if='item.type === "folder"'>
           <b>{{ item.name | pretty }}</b>
+          <!--({{ item.full }})-->
           <span class="biblioteca-file-count">
           &nbsp;{{ item.childrenCount }} archivos
           </span>
