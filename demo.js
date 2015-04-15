@@ -88,7 +88,7 @@ app.controller('MainController', [
 
   $scope.trackDownload = function(item) {
     if (!$window.ga) return;
-    $window.ga('send', 'event', 'file', 'download', item.full);
+    $window.ga('send', 'event', 'download', item.full);
   };
 
 // http://markdalgleish.com/2013/06/using-promises-in-angularjs-views/
