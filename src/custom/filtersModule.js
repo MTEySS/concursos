@@ -18,6 +18,8 @@ angular.module('concursosFilters', []).filter('pretty', function() {
       { search: 'economico'     , replace: 'económico' },
       { search: 'prorroga'      , replace: 'prórroga' },
       { search: 'juridicos'     , replace: 'jurídicos' },
+      { search: 'minima'        , replace: 'mínima' },
+      { search: /\boit\b/       , replace: 'OIT' },
       { search: /\bmas\b/       , replace: 'más' },
       { search: /ion\b/ig       , replace: 'ión' },
       { search: /ion\b/ig       , replace: 'ión' }
