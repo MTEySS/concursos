@@ -1,6 +1,3 @@
-app.controller('bibliotecaCtrl', function($scope, $rootScope, $routeParams) {
-
-  console.log($routeParams);
-
+app.controller('bibliotecaCtrl', function($scope, $routeParams) {
   $scope.open($routeParams.path);
 });

@@ -48,8 +48,8 @@ app.config(function($routeProvider) {
 // for everything
 //
 app.controller('MainController', [
-  '$rootScope', '$scope', 'repoHelper', 'faqs',
-  function($rootScope, $scope, repoHelper, faqs) {
+  '$rootScope', '$scope', 'repoHelper', 'faqs', '$location', '$window',
+  function($rootScope, $scope, repoHelper, faqs, $location, $window) {
 
   // Needed for the loading screen
   $rootScope.$on('$routeChangeStart', function() {
@@ -73,16 +73,17 @@ app.controller('MainController', [
   ];
 */
 
-  $scope.open = function(item) {
-    if (!item || item == '') {
-      item = $scope.root;
-    } else if (_.isString(item)) {
-      item = $scope.repo.find(item);
-      if (!item) item = $scope.root;
+  $scope.open = function(path) {
+    var folder = null;
+    if (!path || path == '') {
+      folder = $scope.root;
+    } else {
+      folder = $scope.repo.find(path);
+      if (!folder) folder = $scope.root;
     }
-    $scope.current = item;
-    $scope.parent = (item === $scope.root) ? null : item.parent;
-    $scope.items = item.children;
+    $scope.current = folder;
+    $scope.parent = (folder === $scope.root) ? null : folder.parent;
+    $scope.items = folder.children;
   };
 
 // http://markdalgleish.com/2013/06/using-promises-in-angularjs-views/
@@ -94,10 +95,6 @@ app.controller('MainController', [
     $scope.open($scope.root);
   });
 
-  // $scope.repo = repoHelper.fetch();
-  // $scope.root = $scope.repo.current;
-  // $scope.open($scope.root);
-
   // preguntas frecuentes
   $scope.faqs = faqs;
 
@@ -106,5 +103,10 @@ app.controller('MainController', [
     alert('Congrats you scrolled to the end of the list!');
   };
 */
+
+  $rootScope.$on('$routeChangeSuccess', function(event) {
+    if (!$window.ga) return;
+    $window.ga('send', 'pageview', { page: $location.path() });
+  });
 
 }]);
