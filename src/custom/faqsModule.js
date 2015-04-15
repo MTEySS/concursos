@@ -53,17 +53,17 @@ app.value('faqs',
 
     {
       question: '¿En qué consiste la etapa de "Evaluación de antecedentes curriculares y laborales"?',
-      answer: 'Se ponderan aquellos antecedentes que superan los requisitos excluyentes ya evaluados en el paso anterior a partir de la documentación presentada. Esta etapa representa un <b>30% del puntaje total</b> del proceso.'
+      answer: 'Se ponderan aquellos antecedentes que superan los requisitos excluyentes ya evaluados en el paso anterior a partir de la documentación presentada.'
     },
 
     {
       question: '¿En qué consiste la etapa de "Evaluación técnica"?',
-      answer: 'Abarca una instancia escrita de evaluación práctica y otra de evaluación de conocimientos teóricos (el postulante nunca debe dar a conocer su identidad real porque será inmediatamente excluído. Siempre debe identificarse mediante un seudónimo). Esta etapa representa un <b>60% del puntaje total</b> del proceso, y precisamente por el peso que recibe en el puntaje total puede llegar a ser determinante a la hora de la confección del orden de mérito.'
+      answer: 'Abarca una instancia escrita de evaluación práctica y otra de evaluación de conocimientos teóricos (el postulante nunca debe dar a conocer su identidad real porque será inmediatamente excluído. Siempre debe identificarse mediante un seudónimo). Por el peso que recibe en el puntaje total puede llegar a ser determinante a la hora de la confección del orden de mérito.'
     },
 
     {
       question: '¿En qué consiste la etapa de "Evaluación mediante entrevista laboral"?',
-      answer: 'Consiste en una guía de entrevista presencial con el Cómite de Selección. Esta etapa representa el <b>10% del puntaje del total</b> del proceso. En esta etapa no se evalúan los conocimientos técnicos, dado que fueron evaluados en la etapa anterior, tan sólo se pueden evaluar cuestiones actitudinales.'
+      answer: 'Consiste en una guía de entrevista presencial con el Cómite de Selección. En esta etapa no se evalúan los conocimientos técnicos, dado que fueron evaluados en la etapa anterior, tan sólo se pueden evaluar cuestiones actitudinales.'
     },
 
     {
