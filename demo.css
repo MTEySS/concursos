@@ -193,6 +193,11 @@ div.biblioteca-item a.biblioteca-file {
   font-size: 0.9em;
 }
 
+a.app-name, a.app-name:hover, a.app-name:visited {
+  color: #fff;
+  text-decoration: none;
+}
+
 @media only screen
 and (max-width : 768px) {
   /* Styles */
