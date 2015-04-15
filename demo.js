@@ -86,6 +86,11 @@ app.controller('MainController', [
     $scope.items = folder.children;
   };
 
+  $scope.trackDownload = function(item) {
+    if (!$window.ga) return;
+    $window.ga('send', 'event', 'file', 'download', item.full);
+  };
+
 // http://markdalgleish.com/2013/06/using-promises-in-angularjs-views/
   repoHelper.fetch().then(function(repo) {
     $scope.repo = repo;

@@ -19,7 +19,7 @@
     <div class="list-group contenidos-items">
       <a class="list-group-item biblioteca-folder-up"
         href='#/biblioteca{{ parent.full }}' ng-if='parent'>
-        <i class="fa fa-reply-all"></i>&nbsp;&nbsp;volver a <b>{{ parent.name | pretty }}</b>
+        <i class="fa fa-reply-all"></i>&nbsp;<small>volver a </small><b>{{ parent.name | pretty }}</b>
       </a>
 
       <div class="biblioteca-item" ng-repeat="item in items">
@@ -32,9 +32,11 @@
           <i class="fa fa-folder-open pull-right"></i>
         </a>
         <a class="list-group-item biblioteca-file" ng-if='item.type === "file"'
-        href="{{item.url}}" target='_blank'>
+          href='{{ item.url }}' target='_blank' ng-click='trackDownload(item)'>
           {{ item.name | pretty }} <i class="fa fa-external-link pull-right"></i>
         </a>
+          <!-- ng-click='download(item)' -->
+          <!-- onclick="ga('send', 'event', 'file', 'download', '');" -->
       </div>
     </div>
   </div>
