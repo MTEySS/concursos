@@ -4,6 +4,8 @@ request = require('request');
 fs = require('fs');
 path = require('path');
 
+var ROOT = 'contenidos';
+
 var TEMPLATE =
 "app.value('contents',\n" +
 "  :contents\n" +
@@ -30,13 +32,21 @@ request(options, function (error, response, body) {
 
   var data = JSON.parse(body);
 
-  var tree = data.tree.map(function(file) {
-    return {
+  var re = new RegExp('^' + ROOT + '($|\/.*)');
+
+
+  var tree = data.tree
+    .filter(function(file) {
+      return re.test(file.path);
+    })
+    .map(function(file) {
+      return {
       path: file.path,
       type: file.type,
       size: file.size
-    };
-  });
+      };
+    })
+  ;
 
   var contents = TEMPLATE.replace(':contents', JSON.stringify(tree));
   // console.log(contents);
