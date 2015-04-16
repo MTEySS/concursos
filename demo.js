@@ -65,7 +65,6 @@ app.controller('MainController', [
   $scope.filterBar = { value: '' } ;
 
   $scope.filterKeydown = function($event) {
-    $scope.filterBar.value = $event.which.toString();
     if ($event.which == 13) {
       $scope.filter($scope.filterBar.value);
     }
