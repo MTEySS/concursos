@@ -1,4 +1,6 @@
-app.factory('repoHelper', function($http, $q, contents) {
+app.factory('repoHelper', [
+  '$http', '$q', 'contents', 'prettyFilter',  // http://blog.tompawlak.org/use-filter-in-controller-angularjs
+  function($http, $q, contents, pretty) {
 
   'use strict';
 
@@ -21,6 +23,8 @@ app.factory('repoHelper', function($http, $q, contents) {
   repo.raw = null;
   repo.data = [];
   repo.tree = [];
+  repo.flat = [];
+  repo.filtered = null;
   repo.current = [];
 
   repo.fetch = function(owner, repository, branch, root, callback) {
@@ -59,6 +63,7 @@ app.factory('repoHelper', function($http, $q, contents) {
     repo.raw = rawData;
     repo.data = repo.parseData(repo.raw, root);
     repo.tree = repo.parseTree(repo.data);
+    repo.flat = repo.parseFlat(repo.tree);
     repo.current = repo.tree;
   };
 
@@ -89,9 +94,12 @@ app.factory('repoHelper', function($http, $q, contents) {
       var matches = /^(.*\/)(.*)/.exec(full);
       var path = matches[1];
       var name = matches[2];
+      var prettyName = pretty(name);
 
       return {
         name: name,
+        pretty: prettyName,
+        search: repo.searchString(prettyName),
         path: path,
         full: full,
         type: file.type === 'tree' ? 'folder' : 'file',
@@ -101,7 +109,7 @@ app.factory('repoHelper', function($http, $q, contents) {
     });
   };
 
-  repo.parseTree = function(raw, root) {
+  repo.parseTree = function(raw) {
 
     var parseChildren = function parseChildren(data, parent, path) {
 
@@ -136,14 +144,28 @@ app.factory('repoHelper', function($http, $q, contents) {
       level: 0
     };
 
-    root = root || REPO_ROOT + '/';
-
     parseChildren(repo.data, tree, '/');
 
     repo.countChildren(tree);
 
     return tree;
   };
+
+  repo.parseFlat = function(tree) {
+    var flat = [];
+
+    var addChildren = function addChildren(tree) {
+      flat.push(tree);
+      if (tree.children) {
+        tree.children.forEach(function(child) {
+          addChildren(child);
+        })
+      }
+    };
+
+    addChildren(tree);
+    return flat;
+  }
 
   repo.countChildren = function countChildren(tree) {
     var count = 0;
@@ -184,44 +206,47 @@ app.factory('repoHelper', function($http, $q, contents) {
     repo.current = repo.find(folder);
   };
 
-  repo.normalizeString = function(text) {
-
+  repo.searchString = function(text) {
+    text = _.deburr(text);
     return text
       .trim()
       .toLowerCase()
+      .replace(/\/|,|\:|-|_|\./g, ' ')
       .replace(/\s+/g, ' ')
-      .replace(/á/g, 'a')
-      .replace(/é/g, 'e')
-      .replace(/í/g, 'i')
-      .replace(/ó/g, 'o')
-      .replace(/ú/g, 'u')
-      .replace(/ñ/g, 'ni')
     ;
-  };
+  }
 
-  repo.filter = function(filter, pre, post) {
+  repo.filter = function(filter, path) {
 
-    if (pre && !post) {
-      pre = '<span class="' + pre + '">';
-      post = '</span>';
-    }
+    filter = filter || ''
+    path = path || '';
+
+    if (!path && !filter) repo.filtered = null;
 
     var buildRegExp = function(filter) {
-      filter = repo.normalizeString(filter);
+      filter = repo.searchString(filter);
       var tokens = filter
-        .split(/\s+/)           //
+        .split(' ')
         .map(function(token) {
-          return '(' + token + ')';
+          return _.escapeRegExp(token);
         })
       ;
-      var regExp = '(.*)' + tokens.join('(.*)') + '(.*)';
+      var regExp = '.*' + tokens.join('.*') + '.*';
       return new RegExp(regExp, 'ig');
     };
 
-    var r = buildRegExp(filter);
+    var re = buildRegExp(filter);
+
+    if (path && !_.endsWith(path, '/')) path += '/';
+
+    var filtered = _.filter(repo.flat, function(file) {
+      // filtramos por path
+      if (path && !_.startsWith(file.path, path)) return false;
+      return re.test(file.search);
+    });
+    repo.filtered = filtered;
+    return repo.filtered
   };
-
-
 
   /*
   repo.tree
@@ -256,4 +281,4 @@ app.factory('repoHelper', function($http, $q, contents) {
     fetch: fetch
   };
 
-});
+}]);

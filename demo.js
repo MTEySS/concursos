@@ -60,18 +60,35 @@ app.controller('MainController', [
     $rootScope.loading = false;
   });
 
-  // Fake text i used here and there.
-  $scope.lorem = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel explicabo, aliquid eaque soluta nihil eligendi adipisci error, illum corrupti nam fuga omnis quod quaerat mollitia expedita impedit dolores ipsam. Obcaecati.';
+  $scope.isFiltered = false;
 
-  //
-  // 'Scroll' screen
-  //
-/*
-  $scope.scrollItems = [
-    { name: 'material_estudio01' }, { name: 'material_estudio02' },
-    { name: 'material_estudio03' }, { name: 'material_estudio04' }
-  ];
-*/
+  $scope.filterBar = { value: '' } ;
+
+  $scope.filterKeydown = function($event) {
+    if ($event.which == 13) {
+      $scope.filter($scope.filterBar.value);
+    }
+    console.log($event);
+  };
+
+  $scope.filter = function(filter) {
+    var path = $scope.current.full;
+
+    // clear filter
+    if (!filter) {
+      $scope.clearFilter();
+      $scope.open(path);
+      return;
+    }
+    $scope.repo.filter(filter, path);
+    $scope.items = $scope.repo.filtered;
+  }
+
+  $scope.clearFilter = function() {
+    $scope.filterBar.value = '';
+    $scope.repo.filter(''); // clear filter
+    $scope.isFiltered = false;
+  }
 
   $scope.open = function(path) {
     var folder = null;
@@ -84,6 +101,7 @@ app.controller('MainController', [
     $scope.current = folder;
     $scope.parent = (folder === $scope.root) ? null : folder.parent;
     $scope.items = folder.children;
+    $scope.clearFilter();
   };
 
   $scope.trackDownload = function(item) {
@@ -96,6 +114,8 @@ app.controller('MainController', [
     $scope.repo = repo;
     $scope.root = repo.current;
     $scope.root.name = 'Biblioteca digital de Concursos';
+
+    repo.filter('creación', '/secretaria_de_trabajo');
 
     $scope.open($scope.root);
   });

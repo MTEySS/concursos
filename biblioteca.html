@@ -10,10 +10,12 @@
 
 <div class="scrollable" ui-state="searchBar">
   <input
+    ng-keydown="filterKeydown($event)"
+    ng-model="filterBar.value"
     ng-if="Ui.active('searchBar')"
     type="search"
     class="form-control scrollable-header"
-    placeholder="Search.." />
+    placeholder="Buscar..." />
 
   <div class="scrollable-content" ui-scroll-bottom='bottomReached()'>
     <div class="list-group contenidos-items">
@@ -35,18 +37,15 @@
           href='{{ item.url }}' target='_blank' ng-click='trackDownload(item)'>
           {{ item.name | pretty }} <i class="fa fa-external-link pull-right"></i>
         </a>
-          <!-- ng-click='download(item)' -->
-          <!-- onclick="ga('send', 'event', 'file', 'download', '');" -->
       </div>
     </div>
   </div>
 
-  <!--
   <a class="btn btn-block btn-lg btn-primary scrollable-footer" ui-toggle='searchBar'>
     <i class="fa fa-search"></i>
-    <span ui-hide="searchBar">Show</span>
-    <span ui-show="searchBar">Hide</span>
-    Search Bar
+    <span ui-hide="searchBar">Mostrar</span>
+    <span ui-show="searchBar">Ocultar</span>
+    barra de busqueda
   </a>
-  -->
+
 </div>
