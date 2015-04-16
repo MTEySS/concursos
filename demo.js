@@ -68,7 +68,6 @@ app.controller('MainController', [
     if ($event.which == 13) {
       $scope.filter($scope.filterBar.value);
     }
-    console.log($event);
   };
 
   $scope.filter = function(filter) {
@@ -82,6 +81,7 @@ app.controller('MainController', [
     }
     $scope.repo.filter(filter, path);
     $scope.items = $scope.repo.filtered;
+    $scope.isFiltered = true;
   }
 
   $scope.clearFilter = function() {
@@ -128,6 +128,10 @@ app.controller('MainController', [
     alert('Congrats you scrolled to the end of the list!');
   };
 */
+
+  $scope.isCompatibleBrowser = function() {
+    return !/MSIE [6|7|8]/.test($window.navigator.userAgent);
+  };
 
   $rootScope.$on('$routeChangeSuccess', function(event) {
     if (!$window.ga || $location.host() == 'localhost') return;
