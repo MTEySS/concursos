@@ -87,7 +87,7 @@ app.controller('MainController', [
   };
 
   $scope.trackDownload = function(item) {
-    if (!$window.ga) return;
+    if (!$window.ga || $location.host() == 'localhost') return;
     $window.ga('send', 'event', 'download', item.full);
   };
 
@@ -110,7 +110,7 @@ app.controller('MainController', [
 */
 
   $rootScope.$on('$routeChangeSuccess', function(event) {
-    if (!$window.ga) return;
+    if (!$window.ga || $location.host() == 'localhost') return;
     $window.ga('send', 'pageview', { page: $location.path() });
   });
 
