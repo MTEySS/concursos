@@ -45,7 +45,7 @@ angular.module('concursosFilters', []).filter('pretty', function() {
     // expand res -> resolucion
     i = i.replace(/\bres\s/ig, 'resolución ')
 
-    i = i.replace(/\bda\s/ig, 'decisión administrativa')
+    i = i.replace(/\bda\s/ig, 'decisión administrativa ')
 
     // expand dec -> decreto
     i = i.replace(/\bdec\s/ig, 'decreto ')
