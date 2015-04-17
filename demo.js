@@ -115,8 +115,6 @@ app.controller('MainController', [
     $scope.root = repo.current;
     $scope.root.name = 'Biblioteca digital de Concursos';
 
-    repo.filter('creación', '/secretaria_de_trabajo');
-
     $scope.open($scope.root);
   });
 

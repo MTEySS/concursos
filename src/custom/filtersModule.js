@@ -20,6 +20,8 @@ angular.module('concursosFilters', []).filter('pretty', function() {
       { search: 'domestico'     , replace: 'doméstico' },
       { search: 'prorroga'      , replace: 'prórroga' },
       { search: 'juridicos'     , replace: 'jurídicos' },
+      { search: 'dictamen'      , replace: 'dictámen' },
+      { search: 'indigenas'     , replace: 'indígenas' },
       { search: 'minima'        , replace: 'mínima' },
       { search: 'victima'       , replace: 'víctima' },
       { search: /\repsal\b/     , replace: 'REPSAL' },

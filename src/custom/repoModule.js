@@ -216,12 +216,16 @@ app.factory('repoHelper', [
     ;
   }
 
-  repo.filter = function(filter, path) {
+  repo.filter = function(filter, path, includeParent) {
 
     filter = filter || ''
     path = path || '';
+    if (includeParent === undefined) includeParent = true;
 
-    if (!path && !filter) repo.filtered = null;
+    if (!path && !filter) {
+      repo.filtered = null;
+      return repo.filtered;
+    }
 
     var buildRegExp = function(filter) {
       filter = repo.searchString(filter);
@@ -239,11 +243,41 @@ app.factory('repoHelper', [
 
     if (path && !_.endsWith(path, '/')) path += '/';
 
+    var filtered = [];
+    var matches = null;
+    var files = repo.flat;
+    var file = null;
+    var last = null;
+
+    for (var i = 0; i < files.length; i++ ) {
+      file = files[i];
+      if (path && !_.startsWith(file.path, path)) continue; // out of the folder I'm looking for
+
+      if (re.test(file.search)) {     // it matches!
+        if (includeParent && file.type === 'file') {
+          // the previously included file is not in the same folder and is not my parent
+          if (filtered.length === 0) {
+            filtered.push(file.parent);     // include parent
+          } else {
+            last = _.last(filtered);
+            // no es el padre, ni es una archivo en mi misma carpeta
+            if (last !== file.parent && last.path !== file.path) {
+              filtered.push(file.parent);     // include my parent
+            }
+          }
+        }
+        filtered.push(file);
+      }
+    }
+
+/*
     var filtered = _.filter(repo.flat, function(file) {
       // filtramos por path
       if (path && !_.startsWith(file.path, path)) return false;
       return re.test(file.search);
     });
+*/
+
     repo.filtered = filtered;
     return repo.filtered
   };
