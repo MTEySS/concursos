@@ -22,6 +22,7 @@ angular.module('concursosFilters', []).filter('pretty', function() {
       { search: 'juridicos'     , replace: 'jurídicos' },
       { search: 'dictamen'      , replace: 'dictámen' },
       { search: 'indigenas'     , replace: 'indígenas' },
+      { search: 'validos'       , replace: 'válidos' },
       { search: 'minima'        , replace: 'mínima' },
       { search: 'victima'       , replace: 'víctima' },
       { search: /\repsal\b/     , replace: 'REPSAL' },
