@@ -70,8 +70,9 @@ app.controller('MainController', [
     }
   };
 
-  $scope.filter = function(filter) {
-    var path = $scope.current.full;
+  $scope.filter = function(filter, path) {
+    filter = filter || '';
+    path = path || $scope.current.full;
 
     // clear filter
     if (!filter) {

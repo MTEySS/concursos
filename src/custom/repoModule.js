@@ -157,7 +157,11 @@ app.factory('repoHelper', [
     var addChildren = function addChildren(tree) {
       flat.push(tree);
       if (tree.children) {
-        tree.children.forEach(function(child) {
+        // primero proceso los hijos archivos, luego los hijos carpetas
+        _.filter(tree.children, {type: 'file'}).forEach(function(child) {
+          addChildren(child);
+        })
+        _.filter(tree.children, {type: 'folder'}).forEach(function(child) {
           addChildren(child);
         })
       }
@@ -236,49 +240,30 @@ app.factory('repoHelper', [
         })
       ;
       var regExp = '.*' + tokens.join('.*') + '.*';
-      return new RegExp(regExp, 'ig');
+      return new RegExp(regExp, 'i');
     };
 
     var re = buildRegExp(filter);
 
+    if (path && !_.startsWith(path, '/')) path = '/' + path;
     if (path && !_.endsWith(path, '/')) path += '/';
 
     var filtered = [];
-    var matches = null;
     var files = repo.flat;
     var file = null;
-    var last = null;
 
-    for (var i = 0; i < files.length; i++ ) {
+    for (var i = 0; i < files.length; i++) {
       file = files[i];
       if (path && !_.startsWith(file.path, path)) continue; // out of the folder I'm looking for
 
       if (re.test(file.search)) {     // it matches!
-        if (includeParent && file.type === 'file') {
-          // the previously included file is not in the same folder and is not my parent
-          if (filtered.length === 0) {
-            filtered.push(file.parent);     // include parent
-          } else {
-            last = _.last(filtered);
-            // no es el padre, ni es una archivo en mi misma carpeta
-            if (last !== file.parent && last.path !== file.path) {
-              filtered.push(file.parent);     // include my parent
-            }
-          }
-        }
+        // include parent folder
+        if (includeParent && file.type === 'file') filtered.push(file.parent);
         filtered.push(file);
       }
     }
 
-/*
-    var filtered = _.filter(repo.flat, function(file) {
-      // filtramos por path
-      if (path && !_.startsWith(file.path, path)) return false;
-      return re.test(file.search);
-    });
-*/
-
-    repo.filtered = filtered;
+    repo.filtered = _.uniq(filtered, 'full');
     return repo.filtered
   };
 
