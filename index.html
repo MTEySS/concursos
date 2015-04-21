@@ -31,6 +31,12 @@
 
   <body ng-app="ConcursosBrowser" ng-controller="MainController">
 
+    <!--[if (IE) & (lte IE 8)]>
+    <script>
+      window.location.href="legacy.html";
+    </script>
+    <![endif]-->
+
     <!-- Sidebars -->
     <div ng-include="'sidebar.html'"
             ui-track-as-search-param='true'
