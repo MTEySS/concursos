@@ -85,17 +85,14 @@ angular.module('concursosFilters', [])
 
   return function(text, search) {
     var normalText = normalize(text);
-    var normalSearch =
-      normalize(search)
-      .trim()
-      .replace(/\s+/g, ' ')
-    ;
 
-    var searchTokens = normalSearch.split(' ');
-
-    var buildRegExp = function(filter) {
-      filter = repo.searchString(filter);
-      var tokens = filter
+    var buildRegExp = function(search) {
+      var normalSearch =
+        normalize(search)
+        .trim()
+        .replace(/\s+/g, ' ')
+      ;
+      var tokens = normalSearch
         .split(' ')
         .map(function(token) {
           return _.escapeRegExp(token);
@@ -105,7 +102,34 @@ angular.module('concursosFilters', [])
       return new RegExp(regExp, 'i');
     };
 
-    return i.toUpperCase() + param;
+    var pre = "<span class='filter-text'>";
+    var post = "</span>";
+
+    var re = buildRegExp(search);
+
+    var normalMatches = re.exec(text);
+
+    if (!normalMatches) return text;
+
+    // remove first element of regular expression result
+    normalMatches = normalMatches.slice(1);
+
+    var pos = 0;
+    var matches = [];
+
+    normalMatches.forEach(function(normalMatch) {
+      var len = normalMatch.length;
+      matches.push(text.substr(pos, len));
+      pos += len;
+    });
+
+    var selected = matches[0];
+
+    for (var i = 1; i < matches.length; i += 2) {
+      selected += pre + matches[i] + post + matches[i+1];
+    }
+
+    return selected;
   };
 
 });
