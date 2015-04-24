@@ -230,6 +230,11 @@ a.footer, a.footer:hover, a.footer:visited {
   margin-bottom: 0px;
 }
 
+.list-group-item .filter-text {
+  color: #fff;
+  background-color: #0062cc;
+}
+
 @media only screen
 and (max-width : 768px) {
   /* Styles */

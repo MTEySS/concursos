@@ -84,6 +84,7 @@ angular.module('concursosFilters', [])
   }
 
   return function(text, search) {
+    if (!search.trim()) return text;
     var normalText = normalize(text);
 
     var buildRegExp = function(search) {
@@ -95,7 +96,7 @@ angular.module('concursosFilters', [])
       var tokens = normalSearch
         .split(' ')
         .map(function(token) {
-          return _.escapeRegExp(token);
+          return '(' + _.escapeRegExp(token) + ')';
         })
       ;
       var regExp = '(.*)' + tokens.join('(.*)') + '(.*)';
@@ -107,7 +108,7 @@ angular.module('concursosFilters', [])
 
     var re = buildRegExp(search);
 
-    var normalMatches = re.exec(text);
+    var normalMatches = re.exec(normalText);
 
     if (!normalMatches) return text;
 

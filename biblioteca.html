@@ -34,9 +34,10 @@
           <i class="fa fa-folder-open pull-right"></i>
         </a>
         <a class="list-group-item biblioteca-file" ng-if='item.type === "file"'
-          href='{{ item.url }}' target='_blank' ng-click='trackDownload(item)'>
-          {{ item.pretty }} <i class="fa fa-external-link pull-right"></i>
+          href='{{ item.url }}' target='_blank' ng-click='trackDownload(item)' ng-bind-html="item.html">
+          {{ item.html }} <i class="fa fa-external-link pull-right"></i>
         </a>
+        <!--  {{ item.pretty | selected: filterBar.value }} <i class="fa fa-external-link pull-right"></i> -->
       </div>
     </div>
   </div>
