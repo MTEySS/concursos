@@ -1,4 +1,5 @@
-angular.module('concursosFilters', []).filter('pretty', function() {
+angular.module('concursosFilters', [])
+.filter('pretty', function() {
 
   var translate = function(text) {
     var trans = [
@@ -71,4 +72,41 @@ angular.module('concursosFilters', []).filter('pretty', function() {
 
     return i;
   };
+})
+.filter('selected', function() {
+
+  var normalize = function(text) {
+    text = _.deburr(text);
+    return text
+      .toLowerCase()
+      .replace(/\/|,|\:|-|_|\./g, ' ')
+    ;
+  }
+
+  return function(text, search) {
+    var normalText = normalize(text);
+    var normalSearch =
+      normalize(search)
+      .trim()
+      .replace(/\s+/g, ' ')
+    ;
+
+    var searchTokens = normalSearch.split(' ');
+
+    var buildRegExp = function(filter) {
+      filter = repo.searchString(filter);
+      var tokens = filter
+        .split(' ')
+        .map(function(token) {
+          return _.escapeRegExp(token);
+        })
+      ;
+      var regExp = '(.*)' + tokens.join('(.*)') + '(.*)';
+      return new RegExp(regExp, 'i');
+    };
+
+    return i.toUpperCase() + param;
+  };
+
 });
+
