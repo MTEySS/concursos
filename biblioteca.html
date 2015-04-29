@@ -27,16 +27,17 @@
       <div class="biblioteca-item" ng-repeat="item in items">
         <a class="list-group-item" ng-click='open(item.full)'
           href='#/biblioteca{{ item.full }}?q=' ng-if='item.type === "folder"'>
-          <b>{{ item.name | pretty }}</b>
+          <b ng-bind-html='item.html'>{{ item.html }}</b>
           <span class="biblioteca-file-count">
           &nbsp;{{ item.childrenCount }} archivos
           </span>
           <i class="fa fa-folder-open pull-right"></i>
         </a>
         <a class="list-group-item biblioteca-file" ng-if='item.type === "file"'
-          href='{{ item.url }}' target='_blank' ng-click='trackDownload(item)'>
-          {{ item.name | pretty }} <i class="fa fa-external-link pull-right"></i>
+          href='{{ item.url }}' target='_blank' ng-click='trackDownload(item)' ng-bind-html='item.html'>
+          {{ item.html }} <i class="fa fa-external-link pull-right"></i>
         </a>
+        <!--  {{ item.pretty | selected: filterBar.value }} <i class="fa fa-external-link pull-right"></i> -->
       </div>
     </div>
   </div>

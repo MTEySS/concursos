@@ -1,4 +1,5 @@
-angular.module('concursosFilters', []).filter('pretty', function() {
+angular.module('concursosFilters', [])
+.filter('pretty', function() {
 
   var translate = function(text) {
     var trans = [
@@ -72,3 +73,4 @@ angular.module('concursosFilters', []).filter('pretty', function() {
     return i;
   };
 });
+

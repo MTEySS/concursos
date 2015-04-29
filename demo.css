@@ -230,6 +230,17 @@ a.footer, a.footer:hover, a.footer:visited {
   margin-bottom: 0px;
 }
 
+.list-group-item .filter-text {
+  font-weight: bold;
+  color: #fff;
+  background-color: #0062cc;
+  padding: .2em .3em .2em;
+  margin: 0em .1em 0em;
+  text-align: center;
+  white-space: nowrap;
+  border-radius: .25em;
+}
+
 @media only screen
 and (max-width : 768px) {
   /* Styles */

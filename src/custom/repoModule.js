@@ -99,6 +99,7 @@ app.factory('repoHelper', [
       return {
         name: name,
         pretty: prettyName,
+        html: prettyName,
         search: repo.searchString(prettyName),
         path: path,
         full: full,
@@ -208,6 +209,7 @@ app.factory('repoHelper', [
 
   repo.open = function(folder) {
     repo.current = repo.find(folder);
+    repo.current.forEach()
   };
 
   repo.searchString = function(text) {
@@ -215,8 +217,7 @@ app.factory('repoHelper', [
     return text
       .trim()
       .toLowerCase()
-      .replace(/\/|,|\:|-|_|\./g, ' ')
-      .replace(/\s+/g, ' ')
+      .replace(/\s|\/|,|\:|-|_|\./g, ' ')
     ;
   }
 
@@ -226,20 +227,55 @@ app.factory('repoHelper', [
     path = path || '';
     if (includeParent === undefined) includeParent = true;
 
+    if (repo.filtered) {
+      // clear previous filter
+      repo.filtered.forEach(function(file) {
+        file.html = file.pretty;
+      });
+    }
+
     if (!path && !filter) {
       repo.filtered = null;
       return repo.filtered;
     }
 
+    var selectText = function(nameMatches, pretty) {
+      var pre = "<span class='filter-text'>";
+      var post = "</span>";
+
+      if (!nameMatches) return pretty;
+
+      // remove first element of regular expression result
+      nameMatches = nameMatches.slice(1);
+
+      var pos = 0;
+      var matches = [];
+
+      nameMatches.forEach(function(nameMatch) {
+        var len = nameMatch.length;
+        matches.push(pretty.substr(pos, len));
+        pos += len;
+      });
+
+      var selected = matches[0];
+
+      for (var i = 1; i < matches.length; i += 2) {
+        selected += pre + matches[i] + post + matches[i+1];
+      }
+
+      return selected;
+    };
+
     var buildRegExp = function(filter) {
+      filter = filter.trim().replace(/\s+/g, ' ');
       filter = repo.searchString(filter);
       var tokens = filter
         .split(' ')
         .map(function(token) {
-          return _.escapeRegExp(token);
+          return '(' + _.escapeRegExp(token) + ')';
         })
       ;
-      var regExp = '.*' + tokens.join('.*') + '.*';
+      var regExp = '(.*)' + tokens.join('(.*)') + '(.*)';
       return new RegExp(regExp, 'i');
     };
 
@@ -251,14 +287,18 @@ app.factory('repoHelper', [
     var filtered = [];
     var files = repo.flat;
     var file = null;
+    var matches = null;
 
     for (var i = 0; i < files.length; i++) {
       file = files[i];
       if (path && !_.startsWith(file.path, path)) continue; // out of the folder I'm looking for
 
-      if (re.test(file.search)) {     // it matches!
+      matches = re.exec(file.search);
+
+      if (matches) {     // it matches!
         // include parent folder
         if (includeParent && file.type === 'file') filtered.push(file.parent);
+        file.html = selectText(matches, file.pretty);
         filtered.push(file);
       }
     }
