@@ -1,0 +1,85 @@
+  <div ui-content-for="title">
+    <span>{{ quiz.title }}</span>
+  </div>
+
+<div class="scrollable">
+  <div class="scrollable-content section">
+
+    <table class="table table-bordered responsive-utilities">
+      <tbody>
+        <tr class='text-center'>
+          <td class="text-success">
+            <span class="fa fa-thumbs-o-up"></span>
+            Correctas <span class="badge">{{ result.correct }}</span>
+          </td>
+          <td class="text-danger">
+            <span class="fa fa-thumbs-o-down"></span>
+            Incorrectas <span class="badge">{{ result.incorrect }}</span>
+          </td>
+          <td class="text-primary">
+            <span class="fa fa-trophy"></span>
+            Puntaje <span class="badge">3.45</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+<!--
+    <div class="btn-group justified">
+      <!-- smile-o / check / thumbs-up / trophy- ->
+      <a class="btn btn-default" href>
+        <span class="fa fa-thumbs-o-up"></span>
+         Correctas <span class="badge">{{ result.correct }}</span>
+      </a>
+      <!-- close / frown-o / thumbs-down- ->
+      <a class="btn btn-default" href>
+        <span class="fa fa-thumbs-o-down"></span>
+        Incorrectas <span class="badge">{{ result.incorrect }}</span>
+      </a>
+      <!-- question - ->
+      <a class="btn btn-default" href>
+        <span class="fa fa-trophy"></span>
+        Puntaje <span class="badge">{{ result.total }}</span>
+      </a>
+    </div>
+
+    <br />
+-->
+    <div class="progress">
+      <div class="progress-bar progress-bar-success progress-bar-striped active" style="width: 33.3%">
+        <span class="fa fa-thumbs-o-up">&nbsp;1</span>
+      </div>
+      <div class="progress-bar progress-bar-danger progress-bar-striped active" style="width: 33.3%">
+        <span class="fa fa-thumbs-o-down">&nbsp;1</span>
+      </div>
+      <div class="progress-bar" style="background-color: #f5f5f5; color: #777; width: 33.3%">
+        <span class="fa fa-question-circle">&nbsp;1</span>
+      </div>
+    </div>
+
+    <hr />
+
+    <form role="form" ng-submit='login()'>
+      <p class='lead text-justify'>
+        <em>{{ question.description }}</em>
+      </p>
+
+      <div ng-repeat="option in question.options">
+        <div class="has-success">
+          <div class="checkbox">
+            <label class='text-justify'>
+              <input type="checkbox" value="">
+              {{ option.description }}
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <button class="btn btn-primary btn-block">
+        Contestar
+      </button>
+
+    </form>
+  </div>
+</div>
+

@@ -24,6 +24,7 @@ app.controller('evaluateCtrl', [
       if (!quiz) return;
 
       $scope.quiz = quiz;
+      $scope.result.total = quiz.questions.length;
       openQuestion();
     };
 

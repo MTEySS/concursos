@@ -3,7 +3,7 @@ app.value('quizzes',
     {
       title: 'Empleo Público',
       code: 'empleo_publico',
-      description: 'Empleo Público',
+      description: 'actividades de carácter transitorio o estacional actividades por tiempo determinado',
       moreInfo: 'http://concursos.js.org/#/capacitate',
       questions: [
 
