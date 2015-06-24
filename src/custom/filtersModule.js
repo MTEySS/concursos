@@ -27,6 +27,7 @@ angular.module('concursosFilters', [])
       { search: 'validos'       , replace: 'válidos' },
       { search: 'minima'        , replace: 'mínima' },
       { search: 'victima'       , replace: 'víctima' },
+      { search: 'guia'          , replace: 'guía' },
       { search: /\bate\b/i      , replace: 'ATE' },
       { search: /\bcct\b/i      , replace: 'CCT' },
       { search: /\bapn\b/i      , replace: 'APN' },

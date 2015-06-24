@@ -116,6 +116,11 @@ app.controller('MainController', [
     $window.ga('send', 'event', 'download', item.full);
   };
 
+  $scope.trackVideo = function(video) {
+    if (!$window.ga || $location.host() == 'localhost') return;
+    $window.ga('send', 'event', 'video', video);
+  };
+
 // http://markdalgleish.com/2013/06/using-promises-in-angularjs-views/
   repoHelper.fetch().then(function(repo) {
     $scope.repo = repo;
