@@ -77,14 +77,19 @@
 	},
 	"expanded_folders":
 	[
-		"/home/sas/dev/apps/mteyss/concursos",
 		"/home/sas/dev/apps/mteyss/concursos/src",
-		"/home/sas/dev/apps/mteyss/concursos/src/custom",
-		"/home/sas/dev/apps/mteyss/concursos/tmp",
-		"/home/sas/dev/apps/mteyss/concursos/tmp/demo"
+		"/home/sas/dev/apps/mteyss/concursos/src/custom"
 	],
 	"file_history":
 	[
+		"/home/sas/tmp/wallpapers/autumn_by_zim2687-d2y4ao2/read me.txt",
+		"/etc/sysctl.conf",
+		"/media/data/Copy/documents/maestria_periodismo/generos_y_experiencias/cronica_parque_centenario/notas.md",
+		"/proc/sys/vm/swappiness",
+		"/home/sas/dev/apps/mteyss/concursos/capacitate.html",
+		"/home/sas/dev/apps/mteyss/concursos/demo.js",
+		"/home/sas/dev/apps/mteyss/concursos/biblioteca.html",
+		"/home/sas/dev/apps/mteyss/concursos/docs/videos.md",
 		"/home/sas/dev/apps/mteyss/concursos/evaluate.html",
 		"/home/sas/dev/apps/mteyss/concursos/quizzes.html",
 		"/home/sas/dev/apps/mteyss/concursos/quizz.html",
@@ -204,15 +209,7 @@
 		"/home/sas/dev/apps/viz-ejecucion-presupuestaria/frontend/img/data/que/pasajes_y_viaticos.svg",
 		"/home/sas/dev/apps/viz-ejecucion-presupuestaria/frontend/img/data/que/otros_gastos.svg",
 		"/home/sas/dev/apps/viz-ejecucion-presupuestaria/frontend/img/data/que/obras_de_arte.svg",
-		"/home/sas/dev/apps/viz-ejecucion-presupuestaria/frontend/img/data/que/maquinaria_y_equipo.svg",
-		"/home/sas/dev/apps/viz-ejecucion-presupuestaria/frontend/img/data/que/libros_revistas_y_otros_elementos_coleccionables.svg",
-		"/home/sas/dev/apps/viz-ejecucion-presupuestaria/frontend/img/data/que/mantenimiento_reparacion_y_limpieza.svg",
-		"/home/sas/dev/apps/viz-ejecucion-presupuestaria/frontend/img/data/que/intereses_por_prestamos_recibidos.svg",
-		"/home/sas/dev/apps/viz-ejecucion-presupuestaria/frontend/img/data/que/gastos_en_personal.svg",
-		"/home/sas/dev/apps/viz-ejecucion-presupuestaria/frontend/img/data/que/gabinete_de_autoridades_superiores.svg",
-		"/home/sas/dev/apps/viz-ejecucion-presupuestaria/frontend/img/data/que/equipo_militar_y_de_seguridad.svg",
-		"/home/sas/dev/apps/viz-ejecucion-presupuestaria/frontend/img/data/que/default.svg",
-		"/home/sas/dev/apps/viz-ejecucion-presupuestaria/frontend/img/data/que/construcciones.svg"
+		"/home/sas/dev/apps/viz-ejecucion-presupuestaria/frontend/img/data/que/maquinaria_y_equipo.svg"
 	],
 	"find":
 	{
@@ -239,6 +236,14 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"swap",
+			"\")'",
+			"'>",
+			"target='_blank'",
+			"track-video",
+			")'>",
+			"target='_blank'",
+			" target",
 			"em",
 			">1",
 			"class=\"text-center",
@@ -358,15 +363,7 @@
 			"migraci",
 			"MINCULT",
 			"LimpiarNivel2",
-			"JGM ",
-			"secoopint",
-			"pfa",
-			"contains",
-			" - ",
-			"CambiosNiveles",
-			"1",
-			"codigo",
-			"MINTRAB"
+			"JGM "
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -437,6 +434,18 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"capaci",
+				"capacitate.html"
+			],
+			[
+				"video",
+				"docs/videos.md"
+			],
+			[
+				"capac",
+				"capacitate.html"
+			],
 			[
 				"sidebarht",
 				"sidebar.html"
